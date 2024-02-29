@@ -80,7 +80,7 @@ const config = {
       mytheme1: {
         "primary": "#5D3587",
         "secondary": "#A367B1",
-        "accent": "#A367B1",
+        "accent": "#FFFFFF",
         "neutral": "#A367B1",
         "base-100": "#392467",
         "info": "#7BD3EA",
