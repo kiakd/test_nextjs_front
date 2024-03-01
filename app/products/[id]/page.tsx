@@ -56,7 +56,7 @@ export default function page({ params, actions, names }: any) {
                 body: JSON.stringify({
                     "name": productState.name,
                     "buffer": buffer,
-                    "pathFileName": `${nameImage}`
+                    "pathFileName": nameImage,
                 })
             })
             if (!response.ok) {
@@ -73,7 +73,7 @@ export default function page({ params, actions, names }: any) {
                 body: JSON.stringify({
                     "name": productState.name,
                     "buffer": buffer,
-                    "pathFileName": `${nameImage}`
+                    "pathFileName": nameImage
                 })
             })
             if (!response.ok) {
