@@ -8,28 +8,36 @@ export default function Form({items}: any)
     const [pageState, setPageState] = useState({
         page: 1
     })
+    const [search, SetSearch] = useState('')
     useEffect(()=>{
         setProductState(items.data)
     }, [])
 
     const handelOnClick = async () =>{
         const page : number = pageState.page + 1
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/producttest?page=${page}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/producttest?search=${search}&page=${page}`)
         const result = await response.json()
         setProductState(result.data)
         setPageState({page})
     }
     const handelOnBack = async () =>{
         const page : number = pageState.page - 1
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/producttest?page=${page}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/producttest?search=${search}&page=${page}`)
         const result = await response.json()
         setProductState(result.data)
         setPageState({page})
     }
 
     const searchInput = async (event) => {
-        console.log(event.target.value)
+        const searchstring = event.target.value
+        const page : number = 1
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/producttest?search=${searchstring}&page=${page}`)
+        const result = await response.json()
+        setProductState(result.data)
+        setPageState({page})
+        SetSearch(searchstring)
     }
+    console.log(items)
     return (
         <div>
             <div>
@@ -38,7 +46,7 @@ export default function Form({items}: any)
             <div>
                 {
                     productState.map((item:any)=>{
-                        return <div key={item.id}>{item.name}</div>
+                        return <div key={item.id}><div>{item.name}</div><div className="border">{item.pathFileName}</div></div>
                     })
                 }
             </div>
